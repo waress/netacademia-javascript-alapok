@@ -22,9 +22,53 @@ console.log(a);  // alma
 var arr = [];
 
 for(var i = 0; i < 5; i++) {
-  arr[i] = function() {
-    console.log(i);
-  }
+  arr[i] = (function(i) { // i itt egy másolat már
+    return function() {
+      console.log(i);
+    };
+  })(i)
 }
 
-arr[0](); // 5, azért mert
+arr[0]();
+arr[1]();
+arr[2]();
+arr[3]();
+arr[4]();
+
+
+
+var arr2 = [];
+
+[0, 1, 2, 3, 4].forEach(function(e){
+  arr2[e] = function() {
+    console.log(e);
+  };
+});
+
+arr2[0]();
+arr2[1]();
+arr2[2]();
+arr2[3]();
+arr2[4]();
+
+
+
+
+
+var arr3 = [0, 1, 2, 3, 4].map(function(e){
+  return function() {
+    console.log(e);
+  };
+});
+
+arr3[0]();
+arr3[1]();
+arr3[2]();
+arr3[3]();
+arr3[4]();
+
+
+
+
+
+
