@@ -7,7 +7,7 @@ setTimeout(function() {
   console.log('0.1 sec later')
 }, 100);
 
-var i = 12451; // ezt csökkenteni kell, mert a stack-nek túl nagy!
+var i = 1245123; // ezt csökkenteni kell, mert a stack-nek túl nagy!
 /*while(i > 0){
   i--;
 }*/
@@ -16,7 +16,7 @@ var i = 12451; // ezt csökkenteni kell, mert a stack-nek túl nagy!
 function countDown() {
   if(i > 0){
     i--;
-    countDown();
+    setImmediate(countDown); // így feldarabolódik a szálon a figyelés, a figyelési pontoknál végrahajthat feladatokat
   }
 }
 
