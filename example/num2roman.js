@@ -46,21 +46,33 @@ function roman(arabic) {
 
 var rules = {
   '1': 'I',
-  '5': 'V'
+  '4': 'IV',
+  '5': 'V',
+  '9': 'IX',
+  '10': 'X',
+  '40': 'XL',
+  '50': 'L',
+  '90': 'XC',
+  '100': 'C',
+  '400': 'CD',
+  '500': 'D',
+  '900': 'CM',
+  '1000': 'M'
 }
 
 function roman(arabic) {
   if (!arabic) {
     return '';
   }
-  var currentArabic = arabic === 5 ? 5 : 1;
+
+  var numbers = Object.keys(rules).filter(function (n) {
+    return Number(n) <= arabic;
+  });
+
+  var currentArabic = numbers.pop();
   var currentRoman = rules[currentArabic];
 
-  return roman(arabic - currentArabic) + currentRoman;
+  return  currentRoman + roman(arabic - currentArabic);
 }
-
-
-
-
 
 module.exports = roman;
